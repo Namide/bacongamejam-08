@@ -5,7 +5,7 @@
     <movie outputType="Application" />
     <movie input="" />
     <movie path="bin\bacongamejam08.swf" />
-    <movie fps="30" />
+    <movie fps="120" />
     <movie width="800" />
     <movie height="600" />
     <movie version="11" />
@@ -25,7 +25,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="bgj8.Main" />
     <option enabledebug="True" />
-    <option additional="-lib heaps" />
+    <option additional="-lib heaps&#xA;#-D resourcesPath=assets&#xA;-swf-lib assets/ressources.swf" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

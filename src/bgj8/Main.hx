@@ -1,6 +1,5 @@
 package bgj8;
 
-import dune.Game;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.Lib;
@@ -12,6 +11,7 @@ import flash.Lib;
 
 class Main 
 {
+	static var _g:Game;
 	
 	static function main() 
 	{
@@ -20,8 +20,11 @@ class Main
 		stage.align = StageAlign.TOP_LEFT;
 		// entry point
 		
-		// test
-		var g:Game = new Game();
+		var s = new net.hires.debug.Stats();
+		s.x = 800 - 69;
+		Lib.current.addChild( s );
+		
+		_g = new Game();
 	}
 	
 }
