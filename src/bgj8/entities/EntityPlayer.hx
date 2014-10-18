@@ -1,5 +1,6 @@
 package bgj8.entities;
 
+import bgj8.collisions.CollisionsPlayer;
 import bgj8.controllers.ControllerAutoFire;
 import dune.component.MultiInput;
 import dune.entity.Entity;
@@ -44,7 +45,7 @@ class EntityPlayer extends Entity
 		
 			var b = new Body();
 			b.typeOfCollision = BodyType.COLLISION_TYPE_ACTIVE;
-			b.typeOfSolid = BodyType.SOLID_TYPE_MOVER;
+			b.typeOfSolid = BodyType.SOLID_TYPE_MOVER | BodyType.SOLID_TYPE_EATER;
 			b.insomniac = true;
 			var sr = new ShapeRect();
 			sr.w = TS * 0.8;
@@ -52,6 +53,7 @@ class EntityPlayer extends Entity
 			sr.anchorX = -0.35 * TS;
 			sr.anchorY = -0.4 * TS;
 			b.shape = sr;
+			b.onCollideItem.push( CollisionsPlayer.vsBodyItem );
 			addBody( b );
 		
 		
@@ -75,9 +77,9 @@ class EntityPlayer extends Entity
 			
 		// Auto fire
 		
-			var bulletPool:EntityPool = new EntityPool( function():Entity { return new EntityBullet1( sm ); } ); 
-			var c3 = new ControllerAutoFire( sm, bulletPool );
-			addController( c3 );
+			//var bulletPool:EntityPool = new EntityPool( function():Entity { return new EntityBullet1( sm ); } ); 
+			//var c3 = new ControllerAutoFire( sm, bulletPool );
+			//addController( c3 );
 			
 			
 		//sm.addEntity( this );

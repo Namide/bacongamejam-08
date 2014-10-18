@@ -49,7 +49,7 @@ class EntityBullet1 extends Entity implements IBullet
 			
 		//systemManager.addEntity( ball );
 		
-		b.onCollideWall.push( function():Void { sm.removeEntity(this); } );
+		b.onCollideWall.push( function(b:Body):Void { sm.removeEntity(this); } );
 	}
 	
 	public function init( shooter:Entity, dirX:Int, dirY:Int )

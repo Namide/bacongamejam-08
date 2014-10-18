@@ -1,6 +1,7 @@
 package bgj8.level;
 
 import bgj8.entities.EntityPlayer;
+import bgj8.entities.EntityRessources;
 import dune.entity.Entity;
 import dune.model.controller.ControllerCamera2dTracking;
 import dune.model.factory.DisplayFactory;
@@ -100,7 +101,7 @@ class LevelGen
 		});
 	}
 	
-	public static function listLevels( uri:String, callback:Array<String> -> Void ):Void
+	/*public static function listLevels( uri:String, callback:Array<String> -> Void ):Void
 	{
 		var load:URLLoader = new URLLoader(new URLRequest(uri));
 		load.addEventListener( IOErrorEvent.IO_ERROR, function( e:IOErrorEvent ):Void { throw e.text; } );
@@ -117,7 +118,7 @@ class LevelGen
 			
 			callback( list );
 		});
-	}
+	}*/
 	
 	public inline function generateLevel():Void
 	{
@@ -195,11 +196,11 @@ class LevelGen
 			EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_WALL );
 		else if ( tile.type == "spawn" )
 			addPlayer( xTile * TS, yTile * TS );
-		else if ( tile.type == "mobile" )
-			addMobile( xTile * TS, yTile * TS, wTile * TS, hTile * TS, tile.datas );
+		/*else if ( tile.type == "mobile" )
+			addMobile( xTile * TS, yTile * TS, wTile * TS, hTile * TS, tile.datas );*/
 	}
 	
-	function addMobile( i:Float, j:Float, w:Float, h:Float, datas:Dynamic ):Void
+	/*function addMobile( i:Float, j:Float, w:Float, h:Float, datas:Dynamic ):Void
 	{
 		var e2 = new Entity();
 		e2.transform.x = i;
@@ -250,7 +251,7 @@ class LevelGen
 				e2.addBody( b2 );
 				
 		_sm.addEntity( e2 );
-	}
+	}*/
 	
 	function addPlayer( i:Float, j:Float ):Void
 	{
@@ -260,44 +261,7 @@ class LevelGen
 		player.init( _sm );
 		_sm.addEntity( player );
 		
-		/*var TS:Float = Settings.TILE_SIZE;
-		
-		// PLAYER
-		var e3 = new Entity();
-		e3.transform.x = i;
-		e3.transform.y = j;
-			
-			// graphic
-			
-				e3.display = DisplayFactory.movieClipToDisplay2dAnim( Lib.attach( "PlayerMC" ), _sm, 1.5 * Settings.TILE_SIZE / 128 );
-				//e3.display = EntityFact.getSolidDisplay( _sm, TS, TS );
-			
-			// collision
-			
-				var b3:Body = new Body();
-				b3.typeOfCollision = BodyType.COLLISION_TYPE_ACTIVE;
-				b3.typeOfSolid = BodyType.SOLID_TYPE_MOVER;
-				b3.insomniac = true;
-				var psr3:ShapeRect = new ShapeRect();
-				psr3.w = TS * 0.8;
-				psr3.h = TS;
-				psr3.anchorX = -0.35 * TS;
-				psr3.anchorY = -0.4 * TS;
-				b3.shape = psr3;
-				e3.addBody( b3 );
-			
-			// Keyboard
-			
-				var i3:ControllerPlatformPlayer = new ControllerPlatformPlayer();
-				e3.addController( i3 );
-				
-			// Camera tracking
-			
-				var i4:ControllerCamera2dTracking = new ControllerCamera2dTracking( _sm.sysGraphic );
-				i4.setAnchor( Settings.TILE_SIZE * 1.5 * 0.5, Settings.TILE_SIZE * 1.5 * 0.5 );
-				e3.addController( i4 );
-			
-		_sm.addEntity( e3 );*/
+		EntityRessources.player = player;
 	}
 	
 	function posToStr( i:Int, j:Int ):String

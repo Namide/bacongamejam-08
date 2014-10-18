@@ -1,5 +1,7 @@
 package bgj8;
 
+import bgj8.entities.EntityFly;
+import bgj8.entities.EntityRessources;
 import dune.component.ComponentType;
 import dune.component.Transform;
 import dune.entity.Entity;
@@ -38,6 +40,7 @@ class Game
 		//hxd.Res.initEmbed();
 		//hxd.Res.loader = new hxd.res.Loader(hxd.res.EmbedFileSystem.create());
 		systemManager = new SysManager( run );
+		EntityRessources.sm = systemManager;
 		
 		//systemManager.sysGraphic.onInit = run;
 
@@ -52,46 +55,26 @@ class Game
 		{
 			levelGen.generateLevel();
 			systemManager.draw();
-			haxe.Timer.delay( systemManager.start, 500 );
+			systemManager.start();
+			//haxe.Timer.delay( systemManager.start, 500 );
 			
 			//systemManager.start();
 			//systemManager.draw();
+			addFly();
 		} );
 		
 	}
 	
-	private function addBounceBall():Void
+	function addFly():Void
 	{
-		var TS:Float = Settings.TILE_SIZE;
-		var size:Float = ( Math.random() + 0.5 ) * TS;
+		var ef:EntityFly = new EntityFly();
+		ef.transform.x = Math.random() * Settings.LIMIT_RIGHT;
+		ef.transform.y = Settings.LIMIT_TOP;
+		ef.init( systemManager );
 		
-		var ball = new Entity();
-		ball.transform.x = ( 1 + Math.random() * 10 ) * TS;
-		ball.transform.y = -size;
-		ball.transform.vX = Math.random() * 5;
+		systemManager.addEntity( ef );
 		
-		// graphic
-		
-			ball.display = EntityFactory.getSolidDisplay( systemManager, size, size );
-		
-		// collision
-		
-			var b4:Body = new Body();
-			var psr4:ShapeRect = new ShapeRect();
-			psr4.w = size;
-			psr4.h = size;
-			b4.shape = psr4;
-			b4.typeOfCollision = BodyType.COLLISION_TYPE_ACTIVE;
-			b4.typeOfSolid = BodyType.SOLID_TYPE_MOVER;
-			ball.addBody( b4 );
-		
-		// move
-	
-			var i4:ControllerPlatform = new ControllerPlatform();
-			ball.addController( i4 );
-		
-		systemManager.addEntity( ball );
-		
+		haxe.Timer.delay( addFly, 1000 );
 	}
 	
 }
