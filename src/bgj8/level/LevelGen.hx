@@ -1,5 +1,6 @@
 package bgj8.level;
 
+import bgj8.entities.EntityPlayer;
 import dune.entity.Entity;
 import dune.model.controller.ControllerCamera2dTracking;
 import dune.model.factory.DisplayFactory;
@@ -127,13 +128,24 @@ class LevelGen
 	function gridAnalyse( levelDatas:LevelData ):Void
 	{
 		var constructed:Array<String> = [];
+		
+		var iMax:Int = 0;
+		var jMax:Int = 0;
+		
 		for ( j in 0...levelDatas.grid.length )
 		{
 			for ( i in 0...levelDatas.grid[j].length )
 			{
 				tileAnalyseSize( levelDatas, i, j, constructed );
+				if ( i > iMax ) iMax = i;
 			}
+			if ( j > jMax ) jMax = j;
 		}
+		
+		Settings.LIMIT_LEFT = 0;
+		Settings.LIMIT_RIGHT = (iMax+1) * Settings.TILE_SIZE;
+		Settings.LIMIT_TOP = 0;
+		Settings.LIMIT_DOWN = (jMax+1) * Settings.TILE_SIZE;
 	}
 	
 	function tileAnalyseSize( levelDatas:LevelData, iMin:Int, jMin:Int, c:Array<String> ):Void
@@ -242,7 +254,13 @@ class LevelGen
 	
 	function addPlayer( i:Float, j:Float ):Void
 	{
-		var TS:Float = Settings.TILE_SIZE;
+		var player:EntityPlayer = new EntityPlayer();
+		player.transform.x = i;
+		player.transform.y = j;
+		player.init( _sm );
+		_sm.addEntity( player );
+		
+		/*var TS:Float = Settings.TILE_SIZE;
 		
 		// PLAYER
 		var e3 = new Entity();
@@ -275,12 +293,11 @@ class LevelGen
 				
 			// Camera tracking
 			
-				var i4:ControllerCamera2dTracking = new ControllerCamera2dTracking( _sm.sysGraphic.camera2d );
+				var i4:ControllerCamera2dTracking = new ControllerCamera2dTracking( _sm.sysGraphic );
 				i4.setAnchor( Settings.TILE_SIZE * 1.5 * 0.5, Settings.TILE_SIZE * 1.5 * 0.5 );
-				i4.setSize( _sm.sysGraphic.engine.width, _sm.sysGraphic.engine.height );
 				e3.addController( i4 );
 			
-		_sm.addEntity( e3 );
+		_sm.addEntity( e3 );*/
 	}
 	
 	function posToStr( i:Int, j:Int ):String

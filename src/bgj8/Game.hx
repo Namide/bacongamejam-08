@@ -58,13 +58,11 @@ class Game
 			//systemManager.draw();
 		} );
 		
-		
 	}
 	
 	private function addBounceBall():Void
 	{
 		var TS:Float = Settings.TILE_SIZE;
-		
 		var size:Float = ( Math.random() + 0.5 ) * TS;
 		
 		var ball = new Entity();
@@ -91,7 +89,7 @@ class Game
 	
 			var i4:ControllerPlatform = new ControllerPlatform();
 			ball.addController( i4 );
-			
+		
 		systemManager.addEntity( ball );
 		
 	}
