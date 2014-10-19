@@ -4,16 +4,18 @@ bacongamejam-08
 * Game created in one weekend during the BaconGameJam 08
 * Theme: "Millions of them"
 
+
 Softwares
 ---
 
 Flash CS6 & Flashdevelopp 4.6
 
 
-Language
+Details
 ---
 
-Haxe 3
+* Language: Haxe 3
+* FlashPlayer: >10
 
 
 Dependencies
@@ -30,8 +32,4 @@ haxelib install Heaps
 haxelib install TweenX
 ```
 	
-Details
----
 
-* Language: Haxe 3
-* FlashPlayer: >10
