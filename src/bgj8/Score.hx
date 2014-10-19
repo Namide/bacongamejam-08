@@ -14,7 +14,7 @@ class Score
 	{
 		points = val;
 		_tf.text = Std.string( points ) + " pts";
-		trace(points);
+		//trace(points);
 		return points;
 	}
 	

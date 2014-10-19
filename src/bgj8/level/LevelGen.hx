@@ -246,10 +246,11 @@ class LevelGen
 		}
 		else if ( tile.type == "mushBody" )
 		{
-			var display = DisplayFactory.assetMcToDisplay2d( "MushBodyMC", _sm, 1 * Settings.TILE_SIZE / 64 );
-			var e = EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM, display );
-			display.setX( e.transform.x );
-			display.setY( e.transform.y - 20 );
+			var display = DisplayFactory.assetMcToSprite( "MushBodyMC", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
+			//var e = EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM, display );
+			display.x = xTile * TS;
+			display.y = yTile * TS - 20;
+			_sm.sysGraphic.camera2d.display.addChild( display );
 		}
 		else if ( tile.type == "spawn" )
 		{
