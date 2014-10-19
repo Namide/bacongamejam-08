@@ -100,23 +100,25 @@ class LevelGen
 			onJsonLoaded( this );
 			
 			var cam = _sm.sysGraphic.camera2d;
-			var layer0 = DisplayFactory.assetMcToSprite( "Bg0MC", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
-			layer0.scale(2);
-			layer0.x -= 10 * Settings.TILE_SIZE;
+			var layer0 = DisplayFactory.assetMcToSprite( "Bg0MC", _sm, 0.5 * Settings.TILE_SIZE / 64 ).sprite;
+			layer0.scale(2.5);
+			layer0.x -= 2 * Settings.TILE_SIZE;
 			layer0.y -= 10 * Settings.TILE_SIZE;
 			cam.addLayer( layer0, 0 );
 			
-			var layer1 = DisplayFactory.assetMcToSprite( "Bg1MC", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
-			layer1.scale(2);
-			layer1.x -= 10 * Settings.TILE_SIZE;
+			var layer1 = DisplayFactory.assetMcToSprite( "Bg1MC", _sm, 0.5 * Settings.TILE_SIZE / 64 ).sprite;
+			layer1.scale(2.5);
+			layer1.x -= 2 * Settings.TILE_SIZE;
 			layer1.y -= 10 * Settings.TILE_SIZE;
 			cam.addLayer( layer1, 0.3 );
 			
-			var layer2 = DisplayFactory.assetMcToSprite( "Bg2MC", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
-			layer2.scale(2);
-			layer2.x -= 10 * Settings.TILE_SIZE;
+			var layer2 = DisplayFactory.assetMcToSprite( "Bg2MC", _sm, 0.5 * Settings.TILE_SIZE / 64 ).sprite;
+			layer2.scale(2.5);
+			layer2.x -= 2 * Settings.TILE_SIZE;
 			layer2.y -= 10 * Settings.TILE_SIZE;
 			cam.addLayer( layer2, 0.7 );
+			
+			_sm.sysGraphic.s2d.addChild( Score.getScoreSprite( _sm ) );
 		});
 	}
 	
@@ -214,6 +216,17 @@ class LevelGen
 		if ( tile.type == "platform" )
 		{
 			EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM );
+		}
+		else if ( tile.type == "grass" )
+		{
+			for ( i in 0...wTile )
+			{
+				var display = DisplayFactory.assetMcToSprite( "GrassMidlleUI", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
+				display.x = xTile + (i+2) * TS;
+				display.y = yTile * TS - 0.4 * TS;
+				_sm.sysGraphic.camera2d.display.addChild( display );
+			}
+			EntityFactory.addSolidEmpty( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM );
 		}
 		else if ( tile.type == "wall" )
 		{

@@ -2,6 +2,7 @@ package bgj8.entities;
 
 import bgj8.collisions.CollisionsPlayer;
 import bgj8.controllers.ControllerAutoFire;
+import dune.component.Health;
 import dune.component.MultiInput;
 import dune.entity.Entity;
 import dune.entity.EntityPool;
@@ -37,6 +38,8 @@ class EntityPlayer extends Entity
 		//transform.x = i;
 		//transform.y = j;
 			
+			health = new Health();
+		
 		// graphic
 		
 			display = DisplayFactory.movieClipToDisplay2dAnim( Lib.attach( "PlayerMC" ), sm, 1.5 * Settings.TILE_SIZE / 128 );
@@ -67,6 +70,8 @@ class EntityPlayer extends Entity
 		// Controller platform
 		
 			var c1 = new ControllerPlatformPlayer();
+			c1.setRun( 8, 0.06 );
+			c1.setJump( 1.5, 3, 3, 6, 0.06, 0.3 );
 			addController( c1 );
 			
 		// Camera tracking

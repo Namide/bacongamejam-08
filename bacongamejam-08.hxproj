@@ -9,7 +9,7 @@
     <movie width="800" />
     <movie height="600" />
     <movie version="11" />
-    <movie minorVersion="6" />
+    <movie minorVersion="8" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
   </output>
@@ -25,7 +25,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="bgj8.Main" />
     <option enabledebug="True" />
-    <option additional="-lib heaps&#xA;-lib tweenx&#xA;#-D resourcesPath=assets&#xA;-swf-lib assets/ressources.swf&#xA;#-D debugHitbox" />
+    <option additional="-lib heaps&#xA;#-dce full&#xA;-lib tweenx&#xA;-D resourcesPath=assets&#xA;-swf-lib assets/ressources.swf&#xA;#-D debugHitbox&#xA;&#xA;#-D source-map-content&#xA;#--macro include('h2d')" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
@@ -50,8 +50,8 @@
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />
-    <option testMovie="Default" />
-    <option testMovieCommand="" />
+    <option testMovie="OpenDocument" />
+    <option testMovieCommand="bin\bacongamejam08.swf" />
   </options>
   <!-- Plugin storage -->
   <storage />
