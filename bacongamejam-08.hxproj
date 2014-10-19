@@ -25,7 +25,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="bgj8.Main" />
     <option enabledebug="True" />
-    <option additional="-lib heaps&#xA;#-D resourcesPath=assets&#xA;-swf-lib assets/ressources.swf&#xA;#-D debugHitbox" />
+    <option additional="-lib heaps&#xA;-lib tweenx&#xA;#-D resourcesPath=assets&#xA;-swf-lib assets/ressources.swf&#xA;#-D debugHitbox" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

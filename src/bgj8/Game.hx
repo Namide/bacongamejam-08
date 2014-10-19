@@ -42,7 +42,7 @@ class Game
 		//hxd.Res.initEmbed();
 		//hxd.Res.loader = new hxd.res.Loader(hxd.res.EmbedFileSystem.create());
 		systemManager = new SysManager( run );
-		EntityRessources.sm = systemManager;
+		EntityRessources.SM = systemManager;
 		
 		//systemManager.sysGraphic.onInit = run;
 

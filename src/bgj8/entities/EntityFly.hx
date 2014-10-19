@@ -60,7 +60,7 @@ class EntityFly extends Entity
 		
 		// Controller platform
 		
-			var c1 = new ControllerFly( EntityRessources.player );//ControllerPlatformPlayer();
+			var c1 = new ControllerFly( EntityRessources.SUSHI );//ControllerPlatformPlayer();
 			addController( c1 );
 			
 		// Camera tracking

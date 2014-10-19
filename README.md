@@ -10,6 +10,7 @@ Dependencies
 
 * [Heaps](https://github.com/ncannasse/heaps), a high performance game framework by Nicolas Cannasse
 * [Dune](https://github.com/Namide/dune), microframework for Haxe 2D games
+* [TweenX](http://tweenx.spheresofa.net/en.html), tweens
 
 	
 Details

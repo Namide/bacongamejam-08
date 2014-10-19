@@ -15,7 +15,10 @@ class ControllerFly extends Controller
 {
 
 	var _target:Entity;
-	public var vel:Float = 0.1 * Settings.TILE_SIZE;
+	
+	//public var vel:Float = 0.1 * Settings.TILE_SIZE;
+	public var velMax:Float = 0.1 * Settings.TILE_SIZE;
+	public var velAcc:Float = 0.005 * Settings.TILE_SIZE;
 	
 	var anchorTargetX:Float;
 	var anchorTargetY:Float;
@@ -25,18 +28,25 @@ class ControllerFly extends Controller
 		super();
 		_target = target;
 		anchorTargetX = Math.random() * Settings.TILE_SIZE - (Settings.TILE_SIZE >> 1);
-		anchorTargetY = Math.random() * Settings.TILE_SIZE - (Settings.TILE_SIZE >> 1);
+		anchorTargetY = Math.random() * Settings.TILE_SIZE - (Settings.TILE_SIZE >> 1) - 1.5 * Settings.TILE_SIZE;
 	}
 	
 	override public function execute(dt:UInt):Void 
 	{
 		var p:Point = new Point( 	anchorTargetX + _target.transform.x - entity.transform.x,
 									anchorTargetY + _target.transform.y - entity.transform.y );
-		p.normalize( vel );
+		/*p.normalize( vel );
 		
 		entity.transform.vX = p.x;
-		entity.transform.vY = p.y;
+		entity.transform.vY = p.y;*/
+		if ( p.x < 0 ) entity.transform.vX -= velAcc;
+		else if ( p.x > 0 ) entity.transform.vX += velAcc;
 		
+		if ( p.y < 0 ) entity.transform.vY -= velAcc;
+		else if ( p.y > 0 ) entity.transform.vY += velAcc;
+		
+		entity.transform.vY = Math.max( Math.min( entity.transform.vY, velMax ), -velMax );
+		entity.transform.vX = Math.max( Math.min( entity.transform.vX, velMax ), -velMax );
 		
 		// ANIMATIONS
 		

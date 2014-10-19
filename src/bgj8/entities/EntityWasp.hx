@@ -65,7 +65,7 @@ class EntityWasp extends Entity
 		
 		// Controller platform
 		
-			var c1 = new ControllerWasp( EntityRessources.player );//ControllerPlatformPlayer();
+			var c1 = new ControllerWasp( EntityRessources.PLAYER );//ControllerPlatformPlayer();
 			addController( c1 );
 			
 		// Camera tracking

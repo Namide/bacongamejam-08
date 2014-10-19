@@ -98,6 +98,25 @@ class LevelGen
 			
 			_levelData = new LevelData( dat );
 			onJsonLoaded( this );
+			
+			var cam = _sm.sysGraphic.camera2d;
+			var layer0 = DisplayFactory.assetMcToSprite( "Bg0MC", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
+			layer0.scale(2);
+			layer0.x -= 10 * Settings.TILE_SIZE;
+			layer0.y -= 10 * Settings.TILE_SIZE;
+			cam.addLayer( layer0, 0 );
+			
+			var layer1 = DisplayFactory.assetMcToSprite( "Bg1MC", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
+			layer1.scale(2);
+			layer1.x -= 10 * Settings.TILE_SIZE;
+			layer1.y -= 10 * Settings.TILE_SIZE;
+			cam.addLayer( layer1, 0.3 );
+			
+			var layer2 = DisplayFactory.assetMcToSprite( "Bg2MC", _sm, 1 * Settings.TILE_SIZE / 64 ).sprite;
+			layer2.scale(2);
+			layer2.x -= 10 * Settings.TILE_SIZE;
+			layer2.y -= 10 * Settings.TILE_SIZE;
+			cam.addLayer( layer2, 0.7 );
 		});
 	}
 	
@@ -190,12 +209,39 @@ class LevelGen
 	{
 		var TS:Float = Settings.TILE_SIZE;
 		
+		//trace(tile.type);
+		
 		if ( tile.type == "platform" )
+		{
 			EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM );
+		}
 		else if ( tile.type == "wall" )
+		{
 			EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_WALL );
+		}
+		else if ( tile.type == "sushi" )
+		{
+			var display = DisplayFactory.assetMcToDisplay2d( "SushiMC", _sm, 1 * Settings.TILE_SIZE / 64 );
+			EntityRessources.SUSHI = EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM, display );
+		}
+		else if ( tile.type == "mushHead" )
+		{
+			var display = DisplayFactory.assetMcToDisplay2d( "MushHeadMC", _sm, 1 * Settings.TILE_SIZE / 64 );
+			var e = EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM, display );
+			display.setX( e.transform.x - 5 );
+			display.setY( e.transform.y - 10 );
+		}
+		else if ( tile.type == "mushBody" )
+		{
+			var display = DisplayFactory.assetMcToDisplay2d( "MushBodyMC", _sm, 1 * Settings.TILE_SIZE / 64 );
+			var e = EntityFactory.addSolid( _sm, xTile * TS, yTile * TS, wTile * TS, hTile * TS, BodyType.SOLID_TYPE_PLATFORM, display );
+			display.setX( e.transform.x );
+			display.setY( e.transform.y - 20 );
+		}
 		else if ( tile.type == "spawn" )
+		{
 			addPlayer( xTile * TS, yTile * TS );
+		}
 		/*else if ( tile.type == "mobile" )
 			addMobile( xTile * TS, yTile * TS, wTile * TS, hTile * TS, tile.datas );*/
 	}
@@ -261,7 +307,7 @@ class LevelGen
 		player.init( _sm );
 		_sm.addEntity( player );
 		
-		EntityRessources.player = player;
+		EntityRessources.PLAYER = player;
 	}
 	
 	function posToStr( i:Int, j:Int ):String

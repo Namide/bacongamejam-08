@@ -41,7 +41,7 @@ class ControllerWasp extends Controller
 		super();
 		_target = target;
 		anchorTargetX = Math.random() * Settings.TILE_SIZE - (Settings.TILE_SIZE >> 1);
-		anchorTargetY = - 0.6 * Settings.TILE_SIZE;
+		anchorTargetY = - 0.2 * Settings.TILE_SIZE;
 		_wakeUp = DTime.getRealMS();
 	}
 	

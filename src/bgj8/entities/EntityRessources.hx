@@ -10,8 +10,9 @@ import dune.system.SysManager;
 class EntityRessources
 {
 
-	public static var sm:SysManager;
-	public static var player:Entity;
+	public static var SM:SysManager;
+	public static var PLAYER:Entity;
+	public static var SUSHI:Entity;
 	
 	public function new() 
 	{
