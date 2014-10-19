@@ -49,9 +49,9 @@ class EntityPlayer extends Entity
 			b.insomniac = true;
 			var sr = new ShapeRect();
 			sr.w = TS * 0.8;
-			sr.h = TS;
+			sr.h = TS * 0.8;
 			sr.anchorX = -0.35 * TS;
-			sr.anchorY = -0.4 * TS;
+			sr.anchorY = -0.6 * TS;
 			b.shape = sr;
 			b.onCollideItem.push( CollisionsPlayer.vsBodyItem );
 			addBody( b );

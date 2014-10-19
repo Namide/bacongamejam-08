@@ -1,5 +1,7 @@
 package bgj8.entities;
 import bgj8.controllers.ControllerFly;
+import bgj8.controllers.ControllerWasp;
+import dune.component.Health;
 import dune.entity.Entity;
 import dune.model.factory.DisplayFactory;
 import dune.system.physic.component.Body;
@@ -13,11 +15,12 @@ import flash.Lib;
  * ...
  * @author Namide
  */
-class EntityFly extends Entity
+class EntityWasp extends Entity
 {
+
 	public function new() 
 	{
-		super("fly");
+		super("wasp");
 	}
 	
 	public function init( sm:SysManager ):Void
@@ -29,10 +32,12 @@ class EntityFly extends Entity
 		//transform.x = i;
 		//transform.y = j;
 			
+			health = new Health();
+		
 		// graphic
 		
 			//display = DisplayFactory.movieClipToDisplay2dAnim( Lib.attach( "FlyMC" ), sm, 1.5 * Settings.TILE_SIZE / 64 );
-			display = DisplayFactory.assetMcToDisplay2dAnim( "FlyMC", sm, 1.5 * Settings.TILE_SIZE / 64 );
+			display = DisplayFactory.assetMcToDisplay2dAnim( "WaspMC", sm, 1.5 * Settings.TILE_SIZE / 64 );
 			
 			
 		// collision
@@ -43,10 +48,10 @@ class EntityFly extends Entity
 			b.typeOfSolid = BodyType.SOLID_TYPE_ITEM;// | BodyType.SOLID_TYPE_PLATFORM;
 			//b.insomniac = true;
 			var sr = new ShapeRect();
-			sr.w = TS * 0.5;
-			sr.h = TS * 0.5;
-			sr.anchorX = -0.5 * TS;
-			sr.anchorY = -0.5 * TS;
+			sr.w = TS * 0.9;
+			sr.h = TS * 1.0;
+			sr.anchorX = -0.2 * TS;
+			sr.anchorY = -0.4 * TS;
 			b.shape = sr;
 			addBody( b );
 		
@@ -60,7 +65,7 @@ class EntityFly extends Entity
 		
 		// Controller platform
 		
-			var c1 = new ControllerFly( EntityRessources.player );//ControllerPlatformPlayer();
+			var c1 = new ControllerWasp( EntityRessources.player );//ControllerPlatformPlayer();
 			addController( c1 );
 			
 		// Camera tracking

@@ -145,7 +145,7 @@ class LevelGen
 		
 		Settings.LIMIT_LEFT = 0;
 		Settings.LIMIT_RIGHT = (iMax+1) * Settings.TILE_SIZE;
-		Settings.LIMIT_TOP = 0;
+		Settings.LIMIT_TOP = -0xFFFFFF;
 		Settings.LIMIT_DOWN = (jMax+1) * Settings.TILE_SIZE;
 	}
 	

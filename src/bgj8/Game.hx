@@ -2,6 +2,8 @@ package bgj8;
 
 import bgj8.entities.EntityFly;
 import bgj8.entities.EntityRessources;
+import bgj8.entities.EntityWasp;
+import bgj8.entities.EntityWasp;
 import dune.component.ComponentType;
 import dune.component.Transform;
 import dune.entity.Entity;
@@ -61,20 +63,33 @@ class Game
 			//systemManager.start();
 			//systemManager.draw();
 			addFly();
+			addWasp();
 		} );
 		
 	}
 	
 	function addFly():Void
 	{
-		var ef:EntityFly = new EntityFly();
+		var ef = new EntityFly();
 		ef.transform.x = Math.random() * Settings.LIMIT_RIGHT;
-		ef.transform.y = Settings.LIMIT_TOP;
+		ef.transform.y = systemManager.sysGraphic.camera2d.y;
 		ef.init( systemManager );
 		
 		systemManager.addEntity( ef );
 		
 		haxe.Timer.delay( addFly, 1000 );
+	}
+	
+	function addWasp():Void
+	{
+		var ew = new EntityWasp();
+		ew.transform.x = Math.random() * Settings.LIMIT_RIGHT;
+		ew.transform.y = systemManager.sysGraphic.camera2d.y;
+		ew.init( systemManager );
+		
+		systemManager.addEntity( ew );
+		
+		haxe.Timer.delay( addWasp, 2000 );
 	}
 	
 }
